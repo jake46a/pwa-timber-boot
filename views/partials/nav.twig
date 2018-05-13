@@ -1,7 +1,24 @@
-<div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-center">
-        {% for menuItem in menu.get_items %}
-            <a class="p-2 text-muted" href="{{ menuItem.link }}">{{ menuItem.title }}</a>
-        {% endfor %}
-    </nav>
-</div>
+{% block nav %}
+  <nav class="navbar fixed-top navbar-expand-xl {{function('pwa_bg_class')}} " role="navigation">
+    <div class="container">
+      {% if theme.theme_mod('pwa_logo') %}
+        <a class="navbar-brand" href="{{ site.url }}">
+          <img src="{{ theme.theme_mod('pwa_logo')}}" alt="{{site.name}}">
+        </a>
+      {% else %}
+        <a class="navbar-brand" href="{{site.url}}" rel="home">{{site.name}}</a>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% include "partials/menu.twig" with {
+          'menu' : menu.get_items
+        } %}
+      </div>
+      {# end navbar#}
+    </div>
+    {# end container #}
+  </nav>
+{% endblock %}

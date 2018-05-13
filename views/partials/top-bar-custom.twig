@@ -1,0 +1,16 @@
+
+  <div id="widgets" class="card-deck">
+
+    {% if dynamic_sidebarc1 %}
+      <div id="topsidebarc1" class="card {{post.color_combo}}">
+        {{dynamic_sidebarc1}}
+      </div>
+    {% endif %}
+
+    {% if dynamic_sidebarc2 %}
+    <div id="topsidebarc2"  class="card {{post.color_combo}}">
+      {{dynamic_sidebarc2}}
+    </div>
+    {% endif %}
+
+  </div>{#end sidebar#}

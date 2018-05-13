@@ -1,0 +1,40 @@
+{% block html_head_container %}
+{% include 'partials/html-header.twig' %}
+{% endblock %}
+<body class="{{body_class}}" data-template="base.twig">
+  <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+  <header class="header">
+    {% block nav %}
+      {% include 'partials/nav.twig' %}
+    {% endblock %}
+    {% block header %}
+      {% include 'partials/header.twig' %}
+    {% endblock %}
+  </header>
+  <div class ="container mb-4" role="top-bar">
+  {% block sidebar3 %}
+          {% include 'partials/top-bar.twig' %}
+  {% endblock %}
+  </div>
+<main role="main" class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<div class ="container mb-4" role="bottom-bar">
+{% block sidebar %}
+        {% include 'partials/bottom-bar.twig' %}
+{% endblock %}
+</div>
+
+<footer class="blog-footer">
+    <p>Built for <a href="{{site.url}}">{{site.name}}</a> by <a href="https://ProWeb.agency">PW.A</a>.
+    </p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+<script src="{{ site.theme.link }}/assets/dist/app.js"></script>
+{{ wp_footer }}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+
+
+</main>
+{% if post.jumbotron3_image %}
+<div class="jumbotron paral paralsec imgj3 d-flex flex-column justify-content-end mb-3">
+{% else %}
+<div class="jumbotron jumbotron-fluid paralsec mt-3">
+{% endif %}
+  <div class = "container-fluid">
+  <h1>{{post.jumbotron3_main_title}}</h1>
+  <p class="lead">{{ post.jumbotron3_text}}</p>
+  <p>
+<a class="btn btn-info btn-lg btn-md" href="{{ function('get_permalink', post.button3_url) }}" role="button">{{post.button3_text}}</a>
+</p>
+</div>
+</div>
+
+<main role="main" class="container ">
+<style>
+      .imgj3 {
+         background-image: url('{{ post.thumbnail.src('full') | default( Image(post.jumbotron3_image).src('full') ) }}');
+         height:90vh;
+         width: 100%;
+         background-repeat: no-repeat;
+         background-attachment: fixed !important;
+         background-size: cover !important;
+         background-position: center !important;
+        }
+        </style>

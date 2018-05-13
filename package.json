@@ -20,6 +20,8 @@
     "popover.js": "^0.2.36"
   },
   "dependencies": {
-    "popper.js": "^1.14.3"
+    "ajv": "^6.5.0",
+    "popper.js": "^1.14.3",
+    "vue": "^2.5.16"
   }
 }

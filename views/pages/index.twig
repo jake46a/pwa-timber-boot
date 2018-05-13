@@ -7,5 +7,7 @@
             </div>
         {% endfor %}
     </div>
-    {% include 'partials/pagination.twig' %}
+
+  {% include 'partials/pagination.twig' with {pagination : posts.pagination({show_all: false})} %}
+
 {% endblock %}

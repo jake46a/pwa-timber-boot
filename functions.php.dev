@@ -1,0 +1,198 @@
+<?php
+		add_theme_support( 'post-thumbnails' );
+add_image_size( 'featured-large', 990, 330);
+add_image_size( 'featured-medium', 750, 250 );
+add_image_size( 'featured-small', 570, 190 );
+add_image_size( 'featured-iphone', 420, 140 );
+add_image_size( 'featured-xs', 360, 120 );
+
+add_filter( 'image_size_names_choose', 'wpshout_custom_sizes' );
+function wpshout_custom_sizes( $sizes ) {
+		return array_merge( $sizes, array(
+				'featured-large' => __( 'PWA Large' ),
+				'featured-medium' => __( 'PWA Medium' ),
+				'featured-small' => __( 'PWA Small' ),
+				'featured-iphone' => __( 'PWA iPone' ),
+				'featured-xs' => __( 'PWA XS' ),
+		) );
+}
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+class mySite extends Timber\Site {
+	public function __construct() {
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'menus' );
+		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
+		parent::__construct();
+	}
+
+
+	function add_to_context( $context ) {
+		$context['menu'] = new Timber\Menu('main-menu');
+		$context['site'] = $this;
+
+		return $context;
+	}
+}
+
+new mySite();
+
+//sidebars-go here
+function pwa_widgets_init() {
+register_sidebar( array(
+'name' => 'Footer Sidebar 1',
+'id' => 'footersidebar1',
+'description' => 'Appears in the footer area 1',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Footer Sidebar 2',
+'id' => 'footersidebar2',
+'description' => 'Appears in the footer area 2',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Footer Sidebar 3',
+'id' => 'footersidebar3',
+'description' => 'Appears in the footer area 3',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+
+register_sidebar( array(
+'name' => 'Footer Sidebar 4',
+'id' => 'footersidebar4',
+'description' => 'Appears in the footer area 4',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+
+register_sidebar( array(
+'name' => 'Top Sidebar 1',
+'id' => 'topsidebar1',
+'description' => 'Appears in the top area 1',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Top Sidebar 2',
+'id' => 'topsidebar2',
+'description' => 'Appears in the top area 2',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Top Sidebar 3',
+'id' => 'topsidebar3',
+'description' => 'Appears in the top area 3',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Top Sidebar 4',
+'id' => 'topsidebar4',
+'description' => 'Appears in the top area 4',
+'before_widget' => '<div class="card-header">',
+'after_widget' => '</p></div><div class="card-footer"></div>',
+'before_title' => '<h3 class="card-title">',
+'after_title' => '</h3></div><div class="card-body"<p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Custom Sidebar 1',
+'id' => 'topsidebarc1',
+'description' => 'Appears in the top custom 1',
+'before_widget' => '<div class="card-body">',
+'after_widget' => '</p></div>',
+'before_title' => '<h3 class="card-text">',
+'after_title' => '</h3><p class="card-text">',
+) );
+
+register_sidebar( array(
+'name' => 'Custom Sidebar 2',
+'id' => 'topsidebarc2',
+'description' => 'Appears in the top custom 2',
+'before_widget' => '<div class="card-body">',
+'after_widget' => '</p></div>',
+'before_title' => '<h3 class="card-text">',
+'after_title' => '</h3><p class="card-text">',
+) );
+
+}
+add_action( 'widgets_init', 'pwa_widgets_init' );
+
+function pwa_scripts() {
+wp_enqueue_style( 'pwa-style', get_stylesheet_uri() );
+    if(get_theme_mod( 'theme_option_setting' ) && get_theme_mod( 'theme_option_setting' ) !== 'default') {
+        wp_enqueue_style( 'pwa-'.get_theme_mod( 'theme_option_setting' ), get_template_directory_uri() . '/inc/presets/theme-option/'.get_theme_mod( 'theme_option_setting' ).'.css', false, '' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'poppins-lora') {
+        wp_enqueue_style( 'pwa-poppins-lora-font', '//fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Poppins:300,400,500,600,700' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'montserrat-merriweather') {
+        wp_enqueue_style( 'pwa-montserrat-merriweather-font', '//fonts.googleapis.com/css?family=Merriweather:300,400,400i,700,900|Montserrat:300,400,400i,500,700,800' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'poppins-poppins') {
+        wp_enqueue_style( 'pwa-poppins-font', '//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'roboto-roboto') {
+        wp_enqueue_style( 'pwa-roboto-font', '//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'arbutusslab-opensans') {
+        wp_enqueue_style( 'pwa-arbutusslab-opensans-font', '//fonts.googleapis.com/css?family=Arbutus+Slab|Open+Sans:300,300i,400,400i,600,600i,700,800' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'oswald-muli') {
+        wp_enqueue_style( 'pwa-oswald-muli-font', '//fonts.googleapis.com/css?family=Muli:300,400,600,700,800|Oswald:300,400,500,600,700' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'montserrat-opensans') {
+        wp_enqueue_style( 'pwa-montserrat-opensans-font', '//fonts.googleapis.com/css?family=Montserrat|Open+Sans:300,300i,400,400i,600,600i,700,800' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) === 'robotoslab-roboto') {
+        wp_enqueue_style( 'pwa-robotoslab-roboto', '//fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700|Roboto:300,300i,400,400i,500,700,700i' );
+    }
+    if(get_theme_mod( 'preset_style_setting' ) && get_theme_mod( 'preset_style_setting' ) !== 'default') {
+        wp_enqueue_style( 'pwa-'.get_theme_mod( 'preset_style_setting' ), get_template_directory_uri() . '/inc/presets/typography/'.get_theme_mod( 'preset_style_setting' ).'.css', false, '' );
+    }
+
+	}
+
+    add_action( 'wp_enqueue_scripts', 'pwa_scripts' );
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';

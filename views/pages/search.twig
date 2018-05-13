@@ -5,11 +5,12 @@
             <h2>Found {{ posts|length }} results for your query "{{ search_term }}"</h2>
         </div>
     </div>
-    <div class="row mb-2 mt-5">
+    <div class="card-deck-wrapper">
         {% for post in posts %}
-            <div class="col-md-12">
+
                 {% include 'partials/post-tease-card.twig' %}
-            </div>
+
         {% endfor %}
     </div>
+      {% include 'partials/pagination.twig' with {pagination : posts.pagination({show_all: false})} %}
 {% endblock %}

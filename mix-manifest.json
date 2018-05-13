@@ -1,4 +1,6 @@
 {
+    "/assets/dist/vendor.js": "/assets/dist/vendor.js",
     "/assets/dist/app.js": "/assets/dist/app.js",
-    "/assets/dist/app.css": "/assets/dist/app.css"
+    "/assets/dist/app.css": "/assets/dist/app.css",
+    "/assets/dist/manifest.js": "/assets/dist/manifest.js"
 }

@@ -1,27 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-    {{ wp_head }}
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content="{{ site.description }}"/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="{{ site.theme.link }}/favicon.ico"/>
-    <title>{{ site.title }}</title>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet"/>
-    <link href="{{ site.theme.link }}/assets/dist/app.css" rel="stylesheet"/>
-</head>
-<body>
-<div class="container">
-    {% include 'partials/header.twig' %}
-    {% include 'partials/nav.twig' %}
-</div>
-<main role="main" class="container">
+{% block html_head_container %}
+{% include 'partials/html-header.twig' %}
+{% endblock %}
+<body class="{{body_class}}" data-template="base.twig">
+  <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+<header id="masthead" class="site-header">
+    {% block nav %}
+      {% include 'partials/nav.twig' %}
+    {% endblock %}
+</header>
+    {% block header %}
+      {% include 'partials/header.twig' %}
+    {% endblock %}
+
+{% if not post.no_page_content %}
     {% block content %}
     {% endblock %}
+    {% endif %}
 </main>
+{% if post.enable_jumbotron %}
+{% include 'partials/jumbotron3.twig' %}
+{% endif %}
+<div class ="container mb-4" role="bottom-bar">
+{% block sidebar %}
+ {% if not post.override_bottom_widgets %}
+        {% include 'partials/bottom-bar.twig' %}
+        {% endif %}
+{% endblock %}
+
+</div>
+
 <footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.
+    <p>Built for <a href="{{site.url}}">{{site.name}}</a> by <a href="https://ProWeb.agency">PW.A</a>.
     </p>
     <p>
         <a href="#">Back to top</a>

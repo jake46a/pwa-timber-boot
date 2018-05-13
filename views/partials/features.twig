@@ -1,0 +1,35 @@
+  <hr class="featurette-divider">
+<div class="row featurette">
+          <div class="col-md-7 align-middle">
+            {{post.feature_1_heading}}
+
+          </div>
+          <div class="col-md-5">
+          <img class="featurette-image img-fluid mx-auto" src="{{ post.thumbnail.src('full') | default( Image(post.feature_1_image).src('full') ) }}" alt="Feature 1 of {{post.tittle}}">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+              {{post.feature_2_heading}}
+
+          </div>
+          <div class="col-md-5 order-md-1">
+              <img class="featurette-image img-fluid mx-auto" src="{{ post.thumbnail.src('full') | default( Image(post.feature_2_image).src('full') ) }}" alt="Feature 2 of {{post.tittle}}">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+              {{post.feature_3_heading}}
+
+          </div>
+          <div class="col-md-5">
+              <img class="featurette-image img-fluid mx-auto" src="{{ post.thumbnail.src('full') | default( Image(post.feature_3_image).src('full') ) }}" alt="Feature 3 of {{post.tittle}}">
+          </div>
+        </div>
+          <hr class="featurette-divider">

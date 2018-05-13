@@ -1,0 +1,17 @@
+{% if dynamic_sidebar1 or dynamic_sidebar2 %}
+  <div id="widgets" class="card-deck">
+
+    {% if dynamic_sidebar1 %}
+      <div id="footersidebar1" class="card text-white bg-secondary box-shadow">
+        {{dynamic_sidebar1}}
+      </div>
+    {% endif %}
+
+    {% if dynamic_sidebar2 %}
+    <div id="footersidebar2"  class="card text-white bg-secondary box-shadow">
+      {{dynamic_sidebar2}}
+    </div>
+    {% endif %}
+
+  </div>{#end sidebar#}
+{% endif %}
